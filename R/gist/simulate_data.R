@@ -9,7 +9,7 @@ set.seed(5)
 # Original data is not publicly available.
 original_data_file_path <- ""
 
-# Path to .RData file containing the model fit to original data.
+# Path to .RData file containing the model fit to original data (fit_bernoulli).
 # This file is not publicly available.
 original_model_r_data_path <- ""
 
@@ -72,6 +72,7 @@ for (i in seq_len(nrow(gist_sim_df))) {
                                     if_else(row$AdjTreatm == 1, 0, j))
     )
 
+    # fit_bernoulli is a brmsfit object loaded from secret .RData file.
     event <- posterior_predict(fit_bernoulli, newdata = new_row, ndraws = 1)
     new_row$Event <- event
     gist_sim_long_df <- rbind(gist_sim_long_df, new_row)
