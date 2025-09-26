@@ -36,7 +36,6 @@ ggplot(df_elpd_days, aes(x = elpd)) +
   geom_histogram(bins = 30, fill = "skyblue", color = "black") +
   geom_vline(aes(xintercept = mean(elpd)), color = "red", linetype = "dashed") +
   labs(
-    title = "Histogram of Pointwise ELPDs when Event Time is in Days",
     x = "Pointwise ELPD",
     y = "Count"
   ) +
@@ -67,7 +66,6 @@ ggplot(df_elpd_months, aes(x = elpd)) +
   geom_histogram(bins = 30, fill = "skyblue", color = "black") +
   geom_vline(aes(xintercept = mean(elpd)), color = "red", linetype = "dashed") +
   labs(
-    title = "Histogram of Pointwise ELPDs when Event Time is in Months",
     x = "Pointwise ELPD",
     y = "Count"
   ) +
