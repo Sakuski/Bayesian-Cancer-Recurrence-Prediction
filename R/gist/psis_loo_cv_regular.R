@@ -7,17 +7,9 @@ library(loo)
 options(brms.backend = "cmdstanr")
 options(mc.cores = 8)
 
-gist_sim_long_df <- read_delim("./../../data/gist_sim_long.csv", delim = ",")
 gist_sim_short_df <- read_delim("./../../data/gist_sim_short.csv", delim = ",")
 
 gist_sim_short_df <- gist_sim_short_df |>
-  mutate(
-    SizeScaled = (Size - mean(Size)) / (2 * sd(Size)),
-    AgeAtSurgScaled = (AgeAtSurg - mean(AgeAtSurg)) / (2 * sd(AgeAtSurg)),
-    MitHPFScaled = (MitHPF - mean(MitHPF)) / (2 * sd(MitHPF))
-  )
-
-gist_sim_long_df <- gist_sim_long_df |>
   mutate(
     SizeScaled = (Size - mean(Size)) / (2 * sd(Size)),
     AgeAtSurgScaled = (AgeAtSurg - mean(AgeAtSurg)) / (2 * sd(AgeAtSurg)),
