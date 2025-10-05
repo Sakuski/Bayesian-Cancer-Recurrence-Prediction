@@ -21,7 +21,34 @@ gist_original_df <- gist_original_df |>
 
 syn_data <- syn(gist_original_df)
 gist_sim_df <- syn_data$syn
-compare(syn_data, gist_original_df)
+
+categorical_vars <- c("AdjTreatm", "GenderMale", "Rupture", "Gastric")
+categorical_comparison <- compare(syn_data, gist_df, vars = categorical_vars)
+categorical_plot <- categorical_comparison$plots
+categorical_plot <- categorical_plot +
+  theme(
+    panel.grid = element_line(colour = "gray", linewidth = .2),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    strip.background = element_rect(fill = "white", colour = NA),
+    axis.title.x = element_blank()
+  )
+categorical_plot
+
+numeric_vars <- c("Size", "AgeAtSurg", "MitHPF")
+numeric_comparison <- compare(syn_data, gist_df, vars = numeric_vars)
+numeric_plot <- numeric_comparison$plots
+numeric_plot <- numeric_plot +
+  scale_x_discrete(breaks = c("0", "5", "15", "25", "40", "55", "65", "80", "95", "120", "160", "200", "240", "280", "320", "360", "400", "440", "480", "520")) +
+  theme(
+    panel.grid = element_line(colour = "gray", linewidth = .2),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    strip.background = element_rect(fill = "white", colour = NA),
+    legend.position = "none"
+  )
+numeric_plot
+
 
 gist_sim_df$PatientID <- seq_len(nrow(gist_sim_df))
 gist_sim_df <- gist_sim_df |>
