@@ -10,7 +10,9 @@ ppc_calibration_pava <- function(y,
                                  n.boot = 200,
                                  dot_scale = .25,
                                  fill_alpha = .8,
-                                 cep_line_color = "red") {
+                                 cep_line_color = "red",
+                                 xlim = c(0, 1.01),
+                                 ylim = c(0, 1.01)) {
   require("reliabilitydiag")
   require("ggdist")
   require("dplyr")
@@ -80,7 +82,7 @@ ppc_calibration_pava <- function(y,
     ) +
     geom_abline(slope = 1, intercept = 0, col = "black", lty = 2, alpha = .3) +
     geom_line(colour = cep_line_color, linewidth = 1) +
-    coord_equal(xlim = c(0, 1.01), ylim = c(0, 1.01), expand = FALSE) +
+    coord_equal(xlim = xlim, ylim = ylim, expand = FALSE) +
     xlab("Predicted probability") +
     ylab("CEP") +
     theme(
@@ -89,6 +91,8 @@ ppc_calibration_pava <- function(y,
       plot.background = element_rect(fill = "white")
     )
 }
+
+# Balanced binary data
 
 set.seed(5)
 n_obs <- 250
@@ -107,4 +111,36 @@ fit_brms <- brm(
 )
 
 yrep_brms <- posterior_predict(fit_brms)
+
+bars_plot <- ppc_bars(y = sim_data$observed_y, yrep = yrep_brms)
+bars_plot <- bars_plot +
+  scale_x_continuous(breaks = c(0, 1), labels = c("0.0", "1.0"))
+bars_plot
+
 ppc_calibration_pava(y = sim_data$observed_y, yrep = yrep_brms)
+
+# Binary data where most values are near 0
+
+set.seed(5)
+n_obs <- 500
+predictor <- rnorm(n_obs, mean = 0, sd = 1)
+true_intercept <- -2.5
+true_slope <- 0.7
+true_prob <- plogis(true_intercept + true_slope * predictor)
+observed_y <- rbinom(n_obs, size = 1, prob = true_prob)
+low_prob_data <- data.frame(observed_y, predictor)
+
+fit_low_prob <- brm(
+  formula = observed_y ~ predictor,
+  data = low_prob_data,
+  family = bernoulli(),
+  seed = 5,
+  iter = 2000,
+  chains = 4,
+  silent = 2
+)
+
+yrep_low_prob <- posterior_predict(fit_low_prob)
+
+ppc_calibration_pava(y = low_prob_data$observed_y, yrep = yrep_low_prob)
+ppc_calibration_pava(y = low_prob_data$observed_y, yrep = yrep_low_prob, xlim = c(0, 0.31), ylim = c(0, 0.31))
