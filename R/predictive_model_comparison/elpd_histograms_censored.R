@@ -40,7 +40,12 @@ ggplot(df_elpd_days, aes(x = elpd)) +
     y = "Count"
   ) +
   coord_cartesian(xlim = c(-10, 0), ylim = c(0, 1000)) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # Event time in months
 
@@ -70,4 +75,9 @@ ggplot(df_elpd_months, aes(x = elpd)) +
     y = "Count"
   ) +
   coord_cartesian(xlim = c(-10, 0), ylim = c(0, 1000)) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
