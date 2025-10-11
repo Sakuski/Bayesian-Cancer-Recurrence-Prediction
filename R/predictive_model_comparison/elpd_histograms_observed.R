@@ -43,8 +43,7 @@ ggplot(df_elpd_days, aes(x = elpd)) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 20),
-    axis.title = element_text(size = 25),
-    legend.text = element_text(size = 25)
+    axis.title = element_text(size = 25)
   )
 
 fit_weibull_months <- brm(formula = rfsmonths | cens(1 - rfs) ~ 1,
@@ -76,6 +75,5 @@ ggplot(df_elpd_months, aes(x = elpd)) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 20),
-    axis.title = element_text(size = 25),
-    legend.text = element_text(size = 25)
+    axis.title = element_text(size = 25)
   )

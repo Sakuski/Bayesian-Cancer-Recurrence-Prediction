@@ -43,8 +43,7 @@ ggplot(df_elpd_days, aes(x = elpd)) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 20),
-    axis.title = element_text(size = 25),
-    legend.text = element_text(size = 25)
+    axis.title = element_text(size = 25)
   )
 
 # Event time in months
@@ -78,6 +77,5 @@ ggplot(df_elpd_months, aes(x = elpd)) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 20),
-    axis.title = element_text(size = 25),
-    legend.text = element_text(size = 25)
+    axis.title = element_text(size = 25)
   )
