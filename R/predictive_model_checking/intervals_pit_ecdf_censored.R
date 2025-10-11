@@ -19,7 +19,16 @@ fit_weibull <- brm(formula = rfstime | cens(1 - rfs) ~ 1,
                    data = rotterdam_df)
 
 # Intervals plot
-pp_check(fit_weibull, type = "intervals", ndraws = 50)
+pp_check(fit_weibull, type = "intervals", ndraws = 50) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # PIT-ECDF plot
-pp_check(fit_weibull, type = "pit_ecdf")
+pp_check(fit_weibull, type = "pit_ecdf") +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )

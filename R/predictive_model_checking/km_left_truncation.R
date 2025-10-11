@@ -27,7 +27,17 @@ set.seed(5)
 pp <- posterior_predict(fit_brms, draw_ids = 1:5)
 
 # Without left-truncation
-ppc_km_overlay(data_trunc$time, pp, status_y = rep(1, nrow(data_trunc)))
+ppc_km_overlay(data_trunc$time, pp, status_y = rep(1, nrow(data_trunc))) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # With left-truncation
-ppc_km_overlay(data_trunc$time, pp, status_y = rep(1, nrow(data_trunc)), left_truncation_y = data_trunc$v)
+ppc_km_overlay(data_trunc$time, pp, status_y = rep(1, nrow(data_trunc)), left_truncation_y = data_trunc$v) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
