@@ -41,7 +41,12 @@ fit_exponential <- brm(formula = EventTime | cens(Censored) ~ AdjTreatm + s(Size
                        data = gist_sim_short_df)
 
 yrep_exponential <- posterior_predict(fit_exponential)
-ppc_km_overlay(y = gist_sim_short_df$EventTime, yrep = yrep_exponential, status_y = 1 - gist_sim_short_df$Censored)
+ppc_km_overlay(y = gist_sim_short_df$EventTime, yrep = yrep_exponential, status_y = 1 - gist_sim_short_df$Censored) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # Weibull AFT
 
@@ -56,7 +61,12 @@ fit_weibull <- brm(formula = EventTime | cens(Censored) ~ AdjTreatm + s(SizeScal
                    data = gist_sim_short_df)
 
 yrep_weibull <- posterior_predict(fit_weibull)
-ppc_km_overlay(y = gist_sim_short_df$EventTime, yrep = yrep_weibull, status_y = 1 - gist_sim_short_df$Censored)
+ppc_km_overlay(y = gist_sim_short_df$EventTime, yrep = yrep_weibull, status_y = 1 - gist_sim_short_df$Censored) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # Bernoulli
 
@@ -151,5 +161,14 @@ ppc_calibration_pava <- function(y,
 }
 
 yrep_bernoulli <- posterior_predict(fit_bernoulli)
-ppc_calibration_pava(y = gist_sim_long_df$Event, yrep = yrep_bernoulli)
-ppc_calibration_pava(y = gist_sim_long_df$Event, yrep = yrep_bernoulli, xlim = c(0, 0.26), ylim = c(0, 0.26))
+ppc_calibration_pava(y = gist_sim_long_df$Event, yrep = yrep_bernoulli) +
+  theme(
+    axis.text = element_text(size = 13),
+    axis.title = element_text(size = 20)
+  )
+
+ppc_calibration_pava(y = gist_sim_long_df$Event, yrep = yrep_bernoulli, xlim = c(0, 0.26), ylim = c(0, 0.26)) +
+  theme(
+    axis.text = element_text(size = 13),
+    axis.title = element_text(size = 20)
+  )
