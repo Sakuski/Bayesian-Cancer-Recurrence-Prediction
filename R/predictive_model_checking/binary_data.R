@@ -125,8 +125,7 @@ bars_plot
 ppc_calibration_pava(y = sim_data$observed_y, yrep = yrep_brms) +
   theme(
     axis.text = element_text(size = 13),
-    axis.title = element_text(size = 20),
-    legend.text = element_text(size = 20)
+    axis.title = element_text(size = 20)
   )
 
 # Binary data where most values are near 0
@@ -155,13 +154,11 @@ yrep_low_prob <- posterior_predict(fit_low_prob)
 ppc_calibration_pava(y = low_prob_data$observed_y, yrep = yrep_low_prob) +
   theme(
     axis.text = element_text(size = 13),
-    axis.title = element_text(size = 20),
-    legend.text = element_text(size = 20)
+    axis.title = element_text(size = 20)
   )
 
 ppc_calibration_pava(y = low_prob_data$observed_y, yrep = yrep_low_prob, xlim = c(0, 0.31), ylim = c(0, 0.31)) +
   theme(
     axis.text = element_text(size = 13),
-    axis.title = element_text(size = 20),
-    legend.text = element_text(size = 20)
+    axis.title = element_text(size = 20)
   )
