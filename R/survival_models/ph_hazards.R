@@ -41,5 +41,7 @@ ggplot(plot_data, aes(x = time, y = hazard, color = profile)) +
   theme_minimal(base_size = 14) +
   theme(
     legend.position = "none",
-    plot.title = element_text(face = "bold")
+    plot.title = element_text(face = "bold"),
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
   )
