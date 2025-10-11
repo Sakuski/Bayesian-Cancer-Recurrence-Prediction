@@ -19,13 +19,28 @@ set.seed(5)
 yrep <- posterior_predict(fit_weibull, ndraws = 1000)
 
 # Unreasonable amount of extrapolation
-ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, status_y = rotterdam_df$rfs, extrapolation_factor = Inf)
+ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, status_y = rotterdam_df$rfs, extrapolation_factor = Inf) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 # Controlled extrapolation
-ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, status_y = rotterdam_df$rfs)
+ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, status_y = rotterdam_df$rfs) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
 
 yimp <- sapply(seq_len(nrow(rotterdam)), \(i) {
                                                ifelse(rotterdam_df$rfs[i] == 0, sample(yrep[yrep[, i] > rotterdam_df$rfstime[i], i], size = 1), rotterdam_df$rfstime[i])})
 
 # Controlled extrapolation with imputation (requires modifying ppc_km_overlay to plomt survival curve for yimp)
-ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, yimp = yimp, status_y = rotterdam_df$rfs)
+ppc_km_overlay(y = rotterdam_df$rfstime, yrep = yrep, yimp = yimp, status_y = rotterdam_df$rfs) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 25)
+  )
