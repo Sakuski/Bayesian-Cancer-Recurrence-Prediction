@@ -110,9 +110,17 @@ plot_weibull_hazard <- function(fit_weibull, new_data) {
     theme_minimal()
 }
 
-plot_weibull_hazard(fit_weibull, patient_treat)
+plot_weibull_hazard(fit_weibull, patient_treat) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
 
-plot_weibull_hazard(fit_weibull, patient_no_treat)
+plot_weibull_hazard(fit_weibull, patient_no_treat) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
 
 # Exponential
 
@@ -169,9 +177,17 @@ plot_exponential_hazard <- function(fit_exponential, new_data) {
     theme_minimal()
 }
 
-plot_exponential_hazard(fit_exponential, patient_treat)
+plot_exponential_hazard(fit_exponential, patient_treat) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
 
-plot_exponential_hazard(fit_exponential, patient_no_treat)
+plot_exponential_hazard(fit_exponential, patient_no_treat) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
 
 # Bernoulli model
 
@@ -185,6 +201,14 @@ fit_bernoulli <- brm(formula = Event ~ AdjOn + s(TimeSinceAdjStopped) + s(Time) 
                      seed = 5,
                      data = gist_sim_long_df)
 
-predictive_plot(fit_bernoulli, gist_sim_long_df, 60, 11, 3, ylim = c(0, 0.08))
+predictive_plot(fit_bernoulli, gist_sim_long_df, 60, 11, 3, ylim = c(0, 0.08)) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
 
-predictive_plot(fit_bernoulli, gist_sim_long_df, 60, 11, 0, ylim = c(0, 0.08))
+predictive_plot(fit_bernoulli, gist_sim_long_df, 60, 11, 0, ylim = c(0, 0.08)) +
+  theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 25)
+  )
