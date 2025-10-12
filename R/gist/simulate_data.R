@@ -31,7 +31,11 @@ categorical_plot <- categorical_plot +
     panel.background = element_rect(fill = "white"),
     plot.background = element_rect(fill = "white"),
     strip.background = element_rect(fill = "white", colour = NA),
-    axis.title.x = element_blank()
+    axis.title.x = element_blank(),
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 20),
+    legend.text = element_text(size = 20),
+    strip.text = element_text(size = 15)
   )
 categorical_plot
 
@@ -45,7 +49,10 @@ numeric_plot <- numeric_plot +
     panel.background = element_rect(fill = "white"),
     plot.background = element_rect(fill = "white"),
     strip.background = element_rect(fill = "white", colour = NA),
-    legend.position = "none"
+    legend.position = "none",
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 20),
+    strip.text = element_text(size = 15)
   )
 numeric_plot
 
